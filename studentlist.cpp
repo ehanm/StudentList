@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include <iomanip>
 
 using namespace std;
 
@@ -14,7 +15,7 @@ struct Student {
 
 vector<Student> studentlist;
 
-void add(){
+void add(vector<Student>* s){
 
   Student student;
 
@@ -30,25 +31,26 @@ void add(){
   cout << "Insert the student's gpa" << endl;
   cin >> student.gpa;
 
-  studentlist.push_back(student);
+  s->push_back(student);
   
 }
 
 
 
-void print() {
+void print(vector<Student>* s) {
 
-  Student student;
-
-  cout << firstname
+  
+  for (int i = 0; i < s->size(); i++) {
+    Student currentstudent = s->at(i);
+    cout << s[i].firstname << " " << s[i].lastname << s[i].id << s[i].gpa << endl;
+  }
   
 }
 
 
 
 int main() {
-
-  Student student;
+  
   bool cont = true;
   char input[100];
 
@@ -62,19 +64,19 @@ int main() {
 
     if (strcmp(input, "ADD") == 0) {
 
-      add(&student);
+      add(&studentlist);
      
     }
-    if else (strcmp(input, "DELETE") == 0) {
+    else if (strcmp(input, "DELETE") == 0) {
 
       cout << "Delete thing";
       
     }
-    if else (strcmp(input, "PRINT") == 0) {
+    else if (strcmp(input, "PRINT") == 0) {
 
-      cout << "Print thing";
+      print(&studentlist);
     }
-    if else (strcmp(input, "QUIT") == 0) {
+    else if (strcmp(input, "QUIT") == 0) {
 
       cont = false;
       break;
