@@ -19,6 +19,8 @@ void add(vector<Student>* s){
 
   Student student;
 
+  s = new Student();
+  
   cout << "Insert the student's first name" << endl;
   cin >> student.firstname;
 
@@ -42,7 +44,6 @@ void print(vector<Student>* s) {
   
   for (int i = 0; i < s->size(); i++) {
     Student currentstudent = s->at(i);
-    cout << s[i].firstname << " " << s[i].lastname << s[i].id << s[i].gpa << endl;
   }
   
 }
