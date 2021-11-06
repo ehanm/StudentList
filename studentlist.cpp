@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 struct Student {
   char firstname[10];
   char lastname[10];
@@ -13,37 +12,43 @@ struct Student {
   float gpa;
 };
 
-vector<Student> studentlist;
+vector<Student*> studentlist;
 
-void add(vector<Student>* s){
+void add(vector<Student*> &s);
+void print(vector<Student*> &s);
 
-  Student student;
 
-  s = new Student();
+void add(vector<Student*> &s){
+  
+  Student* student = new Student();
   
   cout << "Insert the student's first name" << endl;
-  cin >> student.firstname;
+  cin >> student->firstname;
 
   cout << "Insert the student's last name" << endl;
-  cin >> student.lastname;
+  cin >> student->lastname;
 
   cout << "Insert the student's id" << endl;
-  cin >> student.id;
+  cin >> student->id;
 
   cout << "Insert the student's gpa" << endl;
-  cin >> student.gpa;
+  cin >> student->gpa;
 
-  s->push_back(student);
+  s.push_back(student);
   
 }
 
 
 
-void print(vector<Student>* s) {
+void print(vector<Student*> &s) {
 
-  
-  for (int i = 0; i < s->size(); i++) {
-    Student currentstudent = s->at(i);
+  vector<Student*>::iterator it;
+
+  for (it = s.begin(); it != s.end(); it++) {
+    cout << (*it)->firstname << " ";
+    cout << (*it)->lastname << " ";
+    cout << (*it)->id << " ";
+    cout << fixed << setprecision(2) << (*it)->gpa << "\n";
   }
   
 }
@@ -65,7 +70,7 @@ int main() {
 
     if (strcmp(input, "ADD") == 0) {
 
-      add(&studentlist);
+      add(studentlist);
      
     }
     else if (strcmp(input, "DELETE") == 0) {
@@ -75,7 +80,7 @@ int main() {
     }
     else if (strcmp(input, "PRINT") == 0) {
 
-      print(&studentlist);
+      print(studentlist);
     }
     else if (strcmp(input, "QUIT") == 0) {
 
