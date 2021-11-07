@@ -6,17 +6,13 @@
 using namespace std;
 
 struct Student {
-  char firstname[10];
-  char lastname[10];
+  char firstname[200];
+  char lastname[200];
   int id;
   float gpa;
 };
 
 vector<Student*> studentlist;
-
-void add(vector<Student*> &s);
-void print(vector<Student*> &s);
-
 
 void add(vector<Student*> &s){
   
@@ -34,7 +30,7 @@ void add(vector<Student*> &s){
   cout << "Insert the student's gpa" << endl;
   cin >> student->gpa;
 
-  s.push_back(student);
+  (s).push_back(student);
   
 }
 
@@ -44,12 +40,33 @@ void print(vector<Student*> &s) {
 
   vector<Student*>::iterator it;
 
-  for (it = s.begin(); it != s.end(); it++) {
+  for (it = (s).begin(); it < (s).end(); it++) {
     cout << (*it)->firstname << " ";
     cout << (*it)->lastname << " ";
     cout << (*it)->id << " ";
-    cout << fixed << setprecision(2) << (*it)->gpa << "\n";
+    cout << fixed << setprecision(2) << (*it)->gpa << "\n"; 
   }
+  
+}
+
+void deletestudent(vector<Student*> &s) {
+  
+  int idnumber;
+  vector<Student*>::iterator it;
+
+  
+  cout << "Insert the ID number of the student: " << endl;
+  cin >> idnumber;
+
+  for (it = s.begin(); it < s.end(); it++) {
+    if ((*it)->id == idnumber) {
+      s.erase(it);
+      return;
+    }
+  }
+
+  cout << "Student ID doesn't exist in your list!" << endl;
+
   
 }
 
@@ -75,7 +92,7 @@ int main() {
     }
     else if (strcmp(input, "DELETE") == 0) {
 
-      cout << "Delete thing";
+      deletestudent(studentlist);
       
     }
     else if (strcmp(input, "PRINT") == 0) {
