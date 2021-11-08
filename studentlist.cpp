@@ -16,7 +16,6 @@ struct Student { // struct to add for each person
   float gpa;
 };
 
-vector<Student*> studentlist; // making a vector
 
 void add(vector<Student*> &s){ // function to add students
   
@@ -75,6 +74,8 @@ void deletestudent(vector<Student*> &s) { // function to delete students
 
 
 int main() {
+
+  vector<Student*> studentlist; // making a vector
   
   bool cont = true;
   char input[100];
